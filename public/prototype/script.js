@@ -49,14 +49,30 @@ const promos = [
 function productCard(product) {
   return `
     <article class="product-card">
-      <div class="product-card__visual">
+      <div class="product-card__visual" data-card-preview>
         <span class="badge badge--${product.badgeClass}">${product.badge}</span>
         <button class="favorite" type="button" aria-label="Добавить в избранное" aria-pressed="false" data-favorite><svg><use href="#i-heart"/></svg></button>
-        <img src="assets/${product.image}" alt="${product.title}">
+        <div class="preview-images">
+          <img class="preview-image preview-image--1 is-active" src="assets/${product.image}" alt="${product.title}" data-preview-image="0">
+          <img class="preview-image preview-image--2" src="assets/${product.image}" alt="" data-preview-image="1">
+          <img class="preview-image preview-image--3" src="assets/${product.image}" alt="" data-preview-image="2">
+        </div>
+        <div class="preview-zones" aria-hidden="true">
+          <span class="preview-zone" data-preview-zone="0"></span>
+          <span class="preview-zone" data-preview-zone="1"></span>
+          <span class="preview-zone" data-preview-zone="2"></span>
+        </div>
+        <div class="preview-dots" aria-hidden="true">
+          <i class="is-active" data-preview-dot="0"></i>
+          <i data-preview-dot="1"></i>
+          <i data-preview-dot="2"></i>
+        </div>
       </div>
       <div class="price-row"><strong>${product.price}</strong><del>${product.oldPrice}</del></div>
       <h3>${product.title}</h3>
-      <div class="rating">★ ${product.rating} <span>${product.reviews}</span></div>
+      <div class="rating" aria-label="Рейтинг ${product.rating}, ${product.reviews}">
+        <span class="rating__star">★</span><b>${product.rating}</b><span>· ${product.reviews}</span>
+      </div>
       <div class="delivery"><i></i>${product.delivery}</div>
       <button class="add-cart" type="button" aria-label="Добавить товар в корзину" aria-pressed="false" data-add-cart><svg><use href="#i-cart"/></svg><span>В корзину</span></button>
     </article>
@@ -133,6 +149,12 @@ $$('[data-search-form]').forEach((form) => {
 });
 
 document.addEventListener('click', (event) => {
+  const previewZone = event.target.closest('[data-preview-zone]');
+  if (previewZone) {
+    setCardPreview(previewZone.closest('[data-card-preview]'), Number(previewZone.dataset.previewZone));
+    return;
+  }
+
   const addButton = event.target.closest('[data-add-cart]');
   if (addButton) {
     const added = addButton.classList.toggle('is-added');
@@ -159,6 +181,26 @@ document.addEventListener('click', (event) => {
 
   const toastElement = event.target.closest('[data-toast]');
   if (toastElement) showToast(toastElement.dataset.toast);
+});
+
+function setCardPreview(visual, index) {
+  if (!visual) return;
+  $$('[data-preview-image]', visual).forEach((image) => {
+    image.classList.toggle('is-active', Number(image.dataset.previewImage) === index);
+  });
+  $$('[data-preview-dot]', visual).forEach((dot) => {
+    dot.classList.toggle('is-active', Number(dot.dataset.previewDot) === index);
+  });
+}
+
+document.addEventListener('pointerover', (event) => {
+  const zone = event.target.closest('[data-preview-zone]');
+  if (zone) setCardPreview(zone.closest('[data-card-preview]'), Number(zone.dataset.previewZone));
+});
+
+document.addEventListener('pointerout', (event) => {
+  const visual = event.target.closest('[data-card-preview]');
+  if (event.pointerType === 'mouse' && visual && !visual.contains(event.relatedTarget)) setCardPreview(visual, 0);
 });
 
 $('[data-scroll-catalog]')?.addEventListener('click', () => {
