@@ -36,9 +36,9 @@
     <div class="shell header-main">
       <button class="icon-button mobile-menu" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-open><svg><use href="#i-menu"/></svg></button>
 
-      <a class="logo" href="#" aria-label="Petshop — главная"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a>
+      <a class="logo" href="index.html" aria-label="Petshop — главная"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a>
 
-      <button class="catalog-button" type="button" data-toast="Каталог открыт"><svg><use href="#i-grid"/></svg>Каталог</button>
+      <a class="catalog-button" href="catalog.html"><svg><use href="#i-grid"/></svg>Каталог</a>
 
       <form class="search search--desktop" data-search-form>
         <input type="search" placeholder="Искать в Petshop" aria-label="Поиск в Petshop">
@@ -64,11 +64,11 @@
 
     <nav class="shell shortcut-nav" aria-label="Разделы магазина">
       <a class="shortcut-nav__accent" href="#catalog">Акции</a>
-      <a href="#">Кошки</a>
-      <a href="#">Собаки</a>
-      <a href="#">Ветаптека</a>
-      <a href="#">Котята и щенки</a>
-      <a href="#">Другие питомцы</a>
+      <a href="catalog.html?page=cats">Кошки</a>
+      <a href="catalog.html?page=dogs">Собаки</a>
+      <a href="catalog.html#vet">Ветаптека</a>
+      <a href="catalog.html#young">Котята и щенки</a>
+      <a href="catalog.html#other-pets">Другие питомцы</a>
       <a href="#">Бренды</a>
       <a href="#auto">Автозаказ</a>
       <span><svg><use href="#i-pin"/></svg> Сегодня с 18:00</span>
@@ -90,9 +90,9 @@
 
     <section class="shell quick-section" aria-label="Быстрые действия">
       <div class="quick-grid">
-        <a class="quick-card" href="#"><span class="quick-card__icon quick-card__icon--peach">🐈</span><span><b>Кошкам</b><small>корм и уход</small></span></a>
-        <a class="quick-card" href="#"><span class="quick-card__icon quick-card__icon--blue">🐕</span><span><b>Собакам</b><small>всё необходимое</small></span></a>
-        <a class="quick-card" href="#"><span class="quick-card__icon quick-card__icon--green">✚</span><span><b>Ветаптека</b><small>здоровье</small></span></a>
+        <a class="quick-card" href="catalog.html?page=cats"><span class="quick-card__icon quick-card__icon--peach">🐈</span><span><b>Кошкам</b><small>корм и уход</small></span></a>
+        <a class="quick-card" href="catalog.html?page=dogs"><span class="quick-card__icon quick-card__icon--blue">🐕</span><span><b>Собакам</b><small>всё необходимое</small></span></a>
+        <a class="quick-card" href="catalog.html#vet"><span class="quick-card__icon quick-card__icon--green">✚</span><span><b>Ветаптека</b><small>здоровье</small></span></a>
         <button class="quick-card" type="button" data-repeat-order><span class="quick-card__icon quick-card__icon--lilac"><svg><use href="#i-repeat"/></svg></span><span><b>Купить снова</b><small>3 товара · 4 217 ₽</small></span></button>
         <a class="quick-card" href="#auto"><span class="quick-card__icon quick-card__icon--yellow">%</span><span><b>Автозаказ</b><small>скидка до 30%</small></span></a>
         <a class="quick-card" href="#"><span class="quick-card__icon quick-card__icon--rose">♥</span><span><b>Любимые бренды</b><small>подборка для вас</small></span></a>
@@ -126,7 +126,7 @@
 
   <nav class="mobile-bottom-nav" aria-label="Мобильная навигация">
     <a class="is-active" href="#"><svg><use href="#i-home"/></svg><span>Главная</span></a>
-    <a href="#catalog"><svg><use href="#i-grid"/></svg><span>Каталог</span></a>
+    <a href="catalog.html"><svg><use href="#i-grid"/></svg><span>Каталог</span></a>
     <a href="#"><svg><use href="#i-search"/></svg><span>Поиск</span></a>
     <a href="#"><svg><use href="#i-box"/></svg><span>Заказы</span></a>
     <a href="#"><svg><use href="#i-cart"/></svg><span>Корзина</span><b data-cart-count>2</b></a>
@@ -134,8 +134,8 @@
 
   <aside class="mobile-drawer" aria-hidden="true" data-mobile-drawer>
     <div class="mobile-drawer__panel">
-      <div class="mobile-drawer__head"><a class="logo" href="#"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a><button class="icon-button" type="button" aria-label="Закрыть меню" data-menu-close><svg><use href="#i-close"/></svg></button></div>
-      <nav><a href="#catalog">Каталог</a><a href="#">Кошки</a><a href="#">Собаки</a><a href="#">Ветаптека</a><a href="#auto">Автозаказ</a><a href="#">Магазины</a></nav>
+      <div class="mobile-drawer__head"><a class="logo" href="index.html"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a><button class="icon-button" type="button" aria-label="Закрыть меню" data-menu-close><svg><use href="#i-close"/></svg></button></div>
+      <nav><a href="catalog.html">Каталог</a><a href="catalog.html?page=cats">Кошки</a><a href="catalog.html?page=dogs">Собаки</a><a href="catalog.html#vet">Ветаптека</a><a href="#auto">Автозаказ</a><a href="#">Магазины</a></nav>
       <div class="drawer-delivery"><svg><use href="#i-pin"/></svg><span><b>Доставим сегодня</b><small>Санкт-Петербург</small></span></div>
     </div>
   </aside>
