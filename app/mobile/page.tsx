@@ -17,7 +17,7 @@ export default function MobilePreview() {
         <div className="phone-speaker" />
         <iframe
           className="prototype-frame mobile-frame"
-          src="/prototype/index.html?v=4"
+          src="/prototype/index.html?v=5"
           title="Мобильный прототип Petshop.ru для iPhone 17 Pro"
         />
       </div>

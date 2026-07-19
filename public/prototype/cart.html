@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f15a24">
+  <title>Корзина — Petshop</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body class="cart-page">
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4.3 3.2-6.5 7-6.5s6.3 2.2 7 6.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.4c0 5.4-8.8 11-8.8 11s-8.8-5.6-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.3Z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m4 7 8-4 8 4-8 4-8-4Zm0 0v10l8 4 8-4V7M12 11v10"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M9 21v-7h6v7"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 3h6l1 4H8l1-4Zm-2 4 1 14h8l1-14M10 11v6M14 11v6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+
+  <div class="topbar">
+    <div class="shell topbar__inner">
+      <button type="button" data-toast="Город доставки — Санкт-Петербург"><svg><use href="#i-pin"/></svg>Санкт-Петербург</button>
+      <span>Доставим сегодня · бесплатно от 549 ₽</span>
+      <a href="tel:+78123130101">Помощь 24/7 · +7 (812) 313-01-01</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="shell header-main">
+      <button class="icon-button mobile-menu" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-open><svg><use href="#i-menu"/></svg></button>
+      <a class="logo" href="index.html" aria-label="Petshop — главная"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a>
+      <a class="catalog-button" href="catalog.html"><svg><use href="#i-grid"/></svg>Каталог</a>
+      <form class="search search--desktop" data-search-form>
+        <input type="search" placeholder="Искать в Petshop" aria-label="Поиск в Petshop">
+        <button type="submit" aria-label="Найти"><svg><use href="#i-search"/></svg></button>
+      </form>
+      <nav class="account-nav" aria-label="Личный кабинет">
+        <a href="#" data-toast="Вход в личный кабинет"><svg><use href="#i-user"/></svg><span>Войти</span></a>
+        <a href="#" data-toast="Открываем заказы"><svg><use href="#i-box"/></svg><span>Заказы</span></a>
+        <a href="#" data-toast="Открываем избранное"><svg><use href="#i-heart"/></svg><span>Избранное</span></a>
+        <a href="cart.html" class="cart-link is-current"><svg><use href="#i-cart"/></svg><span>Корзина</span><b data-cart-count>3</b></a>
+      </nav>
+      <a class="mobile-cart is-current" href="cart.html" aria-label="Корзина"><svg><use href="#i-cart"/></svg><b data-cart-count>3</b></a>
+    </div>
+
+    <div class="shell mobile-search-wrap">
+      <form class="search search--mobile" data-search-form>
+        <svg><use href="#i-search"/></svg>
+        <input type="search" placeholder="Искать в Petshop" aria-label="Поиск в Petshop">
+      </form>
+    </div>
+
+    <nav class="shell shortcut-nav" aria-label="Разделы магазина">
+      <a class="shortcut-nav__accent" href="index.html#catalog">Акции</a>
+      <a href="catalog.html?page=cats">Кошки</a>
+      <a href="catalog.html?page=dogs">Собаки</a>
+      <a href="catalog.html#vet">Ветаптека</a>
+      <a href="catalog.html#young">Котята и щенки</a>
+      <a href="catalog.html#other-pets">Другие питомцы</a>
+      <a href="#" data-toast="Открываем список брендов">Бренды</a>
+      <a href="index.html#auto">Автозаказ</a>
+      <span><svg><use href="#i-pin"/></svg> Сегодня с 18:00</span>
+    </nav>
+  </header>
+
+  <main class="shell cart-main">
+    <nav class="cart-breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Главная</a><span>›</span><b>Корзина</b></nav>
+    <div class="cart-title"><div><h1>Корзина</h1><span data-cart-title-count>3 товара</span></div><a href="catalog.html">Продолжить покупки</a></div>
+
+    <section class="free-delivery" data-free-delivery>
+      <span class="free-delivery__icon"><svg><use href="#i-check"/></svg></span>
+      <div><b data-delivery-message>Бесплатная доставка доступна</b><small>Привезём сегодня с 18:00 до 22:00</small><i><span data-delivery-progress></span></i></div>
+      <button type="button" data-toast="Интервалы доставки можно изменить при оформлении">Изменить</button>
+    </section>
+
+    <div class="cart-layout">
+      <section class="cart-list-card">
+        <div class="cart-list-head">
+          <label class="cart-check"><input type="checkbox" checked data-select-all><i><svg><use href="#i-check"/></svg></i><span>Выбрать всё</span></label>
+          <button type="button" data-delete-selected><svg><use href="#i-trash"/></svg>Удалить выбранное</button>
+        </div>
+        <div class="cart-delivery-head"><span>Сегодня</span><div><b>Курьерская доставка</b><small>18:00–22:00</small></div><em>Бесплатно</em></div>
+
+        <div class="cart-items" data-cart-items>
+          <article class="cart-item" data-cart-item data-price="519" data-old-price="590" data-quantity="2">
+            <label class="cart-check cart-item__check"><input type="checkbox" checked data-item-check><i><svg><use href="#i-check"/></svg></i></label>
+            <a class="cart-item__image" href="#" data-toast="Открываем карточку Savita Sterilised"><img src="assets/product-rabbit.jpg" alt="Savita Sterilised с кроликом"></a>
+            <div class="cart-item__info">
+              <span class="cart-item__badge">Хит</span>
+              <h2>Savita Sterilised корм с кроликом и овощами</h2>
+              <p>Для взрослых кошек · 400 г</p>
+              <div class="cart-item__meta"><span>★ 4,8 · 291 отзыв</span><b>Сегодня</b></div>
+              <div class="cart-item__mobile-price"><strong data-line-price>1 038 ₽</strong><del data-line-old>1 180 ₽</del></div>
+              <div class="cart-item__mobile-controls"></div>
+            </div>
+            <div class="cart-item__actions"><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><button type="button" aria-label="Удалить товар" data-remove-item><svg><use href="#i-trash"/></svg></button></div>
+            <div class="cart-item__price"><strong data-line-price>1 038 ₽</strong><del data-line-old>1 180 ₽</del><small>519 ₽ за шт.</small></div>
+            <div class="quantity" aria-label="Количество товара"><button type="button" aria-label="Уменьшить количество" data-quantity-minus>−</button><b data-quantity-value>2</b><button type="button" aria-label="Увеличить количество" data-quantity-plus>+</button></div>
+          </article>
+
+          <article class="cart-item" data-cart-item data-price="1099" data-old-price="1249" data-quantity="1">
+            <label class="cart-check cart-item__check"><input type="checkbox" checked data-item-check><i><svg><use href="#i-check"/></svg></i></label>
+            <a class="cart-item__image" href="#" data-toast="Открываем карточку Savita Renal"><img src="assets/product-renal.png" alt="Savita Renal"></a>
+            <div class="cart-item__info">
+              <span class="cart-item__badge cart-item__badge--purple">−12%</span>
+              <h2>Savita Renal сухой корм для здоровья почек</h2>
+              <p>Ветеринарная линейка · 1,5 кг</p>
+              <div class="cart-item__meta"><span>★ 4,9 · 842 отзыва</span><b>Сегодня</b></div>
+              <div class="cart-item__mobile-price"><strong data-line-price>1 099 ₽</strong><del data-line-old>1 249 ₽</del></div>
+              <div class="cart-item__mobile-controls"></div>
+            </div>
+            <div class="cart-item__actions"><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><button type="button" aria-label="Удалить товар" data-remove-item><svg><use href="#i-trash"/></svg></button></div>
+            <div class="cart-item__price"><strong data-line-price>1 099 ₽</strong><del data-line-old>1 249 ₽</del><small>1 099 ₽ за шт.</small></div>
+            <div class="quantity" aria-label="Количество товара"><button type="button" aria-label="Уменьшить количество" data-quantity-minus>−</button><b data-quantity-value>1</b><button type="button" aria-label="Увеличить количество" data-quantity-plus>+</button></div>
+          </article>
+
+          <article class="cart-item" data-cart-item data-price="579" data-old-price="644" data-quantity="2">
+            <label class="cart-check cart-item__check"><input type="checkbox" checked data-item-check><i><svg><use href="#i-check"/></svg></i></label>
+            <a class="cart-item__image" href="#" data-toast="Открываем карточку Van Cat"><img src="assets/product-litter.png" alt="Van Cat наполнитель"></a>
+            <div class="cart-item__info">
+              <span class="cart-item__badge cart-item__badge--green">Выбор хозяев</span>
+              <h2>Van Cat комкующийся наполнитель без пыли</h2>
+              <p>Натуральный · 5 кг</p>
+              <div class="cart-item__meta"><span>★ 4,9 · 1 230 отзывов</span><b>Сегодня</b></div>
+              <div class="cart-item__mobile-price"><strong data-line-price>1 158 ₽</strong><del data-line-old>1 288 ₽</del></div>
+              <div class="cart-item__mobile-controls"></div>
+            </div>
+            <div class="cart-item__actions"><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><button type="button" aria-label="Удалить товар" data-remove-item><svg><use href="#i-trash"/></svg></button></div>
+            <div class="cart-item__price"><strong data-line-price>1 158 ₽</strong><del data-line-old>1 288 ₽</del><small>579 ₽ за шт.</small></div>
+            <div class="quantity" aria-label="Количество товара"><button type="button" aria-label="Уменьшить количество" data-quantity-minus>−</button><b data-quantity-value>2</b><button type="button" aria-label="Увеличить количество" data-quantity-plus>+</button></div>
+          </article>
+        </div>
+
+        <div class="cart-empty" data-cart-empty hidden><span>🛒</span><h2>Корзина пока пуста</h2><p>Верните товары или выберите что-нибудь из рекомендаций.</p><a href="catalog.html">Перейти в каталог</a></div>
+
+        <label class="auto-order-card">
+          <input type="checkbox" data-auto-order>
+          <i></i>
+          <span class="auto-order-card__icon">↻</span>
+          <span><b>Сделать товары автозаказом</b><small>Будем привозить вовремя · дополнительная скидка до 10%</small></span>
+          <em>−10%</em>
+        </label>
+      </section>
+
+      <aside class="order-summary">
+        <h2>Ваш заказ</h2>
+        <div class="summary-row"><span data-summary-count>5 товаров</span><b data-summary-old>3 717 ₽</b></div>
+        <div class="summary-row summary-row--discount"><span>Скидка</span><b data-summary-discount>−422 ₽</b></div>
+        <div class="summary-row"><span>Доставка сегодня</span><b class="summary-free">Бесплатно</b></div>
+        <form class="promo-form" data-promo-form><input type="text" placeholder="Промокод" aria-label="Промокод"><button type="submit">Применить</button></form>
+        <div class="promo-hint">Попробуйте промокод <button type="button" data-copy-promo>PETSHOP10</button></div>
+        <div class="summary-total"><span>Итого</span><strong data-summary-total>3 295 ₽</strong></div>
+        <button class="checkout-button" type="button" data-checkout>Перейти к оформлению</button>
+        <div class="summary-bonus"><span>🧡</span><div><b data-bonus-value>+99 бонусов</b><small>начислим после получения заказа</small></div></div>
+        <p class="summary-legal">Нажимая кнопку, вы соглашаетесь с условиями продажи и обработки данных.</p>
+      </aside>
+    </div>
+
+    <section class="recommendations">
+      <div class="recommendations__head"><div><h2>С этим покупают</h2><p>Полезное дополнение к вашему заказу</p></div><a href="catalog.html">Смотреть всё <svg><use href="#i-chevron"/></svg></a></div>
+      <div class="recommendation-grid">
+        <article class="recommendation-card"><div><span>−15%</span><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><img src="assets/product-dog.png" alt="Лакомство для чистки зубов"></div><strong>349 ₽</strong><del>410 ₽</del><h3>Лакомство для чистки зубов</h3><p><b>★ 4,9</b> · 418 отзывов</p><small>Сегодня</small><button type="button" data-reco-add><svg><use href="#i-cart"/></svg><span>В корзину</span></button></article>
+        <article class="recommendation-card"><div><span>Хит</span><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><img src="assets/product-salmon.png" alt="Паучи с лососем"></div><strong>89 ₽</strong><del>105 ₽</del><h3>Паучи с лососем для взрослых кошек</h3><p><b>★ 5,0</b> · 1 102 отзыва</p><small>Сегодня</small><button type="button" data-reco-add><svg><use href="#i-cart"/></svg><span>В корзину</span></button></article>
+        <article class="recommendation-card"><div><span>Новинка</span><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><img src="assets/product-turkey.png" alt="Витамины для шерсти"></div><strong>699 ₽</strong><del>790 ₽</del><h3>Витамины для здоровой кожи и шерсти</h3><p><b>★ 4,8</b> · 236 отзывов</p><small>Завтра</small><button type="button" data-reco-add><svg><use href="#i-cart"/></svg><span>В корзину</span></button></article>
+        <article class="recommendation-card"><div><span>−20%</span><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><img src="assets/product-litter.png" alt="Коврик под лоток"></div><strong>459 ₽</strong><del>574 ₽</del><h3>Коврик под лоток с ячеистой поверхностью</h3><p><b>★ 4,9</b> · 692 отзыва</p><small>Сегодня</small><button type="button" data-reco-add><svg><use href="#i-cart"/></svg><span>В корзину</span></button></article>
+        <article class="recommendation-card"><div><span>Petshop</span><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><img src="assets/product-rabbit.jpg" alt="Крем-лакомство"></div><strong>159 ₽</strong><del>179 ₽</del><h3>Крем-лакомство с нежным кроликом</h3><p><b>★ 4,9</b> · 515 отзывов</p><small>Сегодня</small><button type="button" data-reco-add><svg><use href="#i-cart"/></svg><span>В корзину</span></button></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <a class="logo logo--footer" href="index.html"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a>
+      <nav><a href="#">Доставка и оплата</a><a href="#">Магазины</a><a href="#">Помощь</a><a href="#">О компании</a></nav>
+      <div><a href="tel:+78123130101">+7 (812) 313-01-01</a><span>Круглосуточно</span></div>
+    </div>
+  </footer>
+
+  <div class="mobile-checkout-bar" data-mobile-checkout><div><small>Итого</small><b data-mobile-total>3 295 ₽</b></div><button type="button" data-checkout>Оформить</button></div>
+
+  <nav class="mobile-bottom-nav cart-bottom-nav" aria-label="Мобильная навигация">
+    <a href="index.html"><svg><use href="#i-home"/></svg><span>Главная</span></a>
+    <a href="catalog.html"><svg><use href="#i-grid"/></svg><span>Каталог</span></a>
+    <a href="#" data-toast="Нажмите на строку поиска"><svg><use href="#i-search"/></svg><span>Поиск</span></a>
+    <a href="#" data-toast="Открываем заказы"><svg><use href="#i-box"/></svg><span>Заказы</span></a>
+    <a class="is-active" href="cart.html"><svg><use href="#i-cart"/></svg><span>Корзина</span><b data-cart-count>3</b></a>
+  </nav>
+
+  <aside class="mobile-drawer" aria-hidden="true" data-mobile-drawer>
+    <div class="mobile-drawer__panel">
+      <div class="mobile-drawer__head"><a class="logo" href="index.html"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a><button class="icon-button" type="button" aria-label="Закрыть меню" data-menu-close><svg><use href="#i-close"/></svg></button></div>
+      <nav><a href="catalog.html">Каталог</a><a href="catalog.html?page=cats">Кошки</a><a href="catalog.html?page=dogs">Собаки</a><a href="catalog.html#vet">Ветаптека</a><a href="index.html#auto">Автозаказ</a><a href="#" data-toast="Открываем магазины">Магазины</a></nav>
+      <div class="drawer-delivery"><svg><use href="#i-pin"/></svg><span><b>Доставим сегодня</b><small>Санкт-Петербург</small></span></div>
+    </div>
+  </aside>
+
+  <div class="toast" role="status" aria-live="polite" data-toast-box></div>
+  <script src="script.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>
