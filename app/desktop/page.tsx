@@ -9,7 +9,7 @@ export default function DesktopPreview() {
       </nav>
       <iframe
         className="prototype-frame desktop-frame"
-        src="/prototype/index.html?v=5"
+        src="/prototype/index.html?v=6"
         title="Десктопный прототип Petshop.ru"
       />
     </main>

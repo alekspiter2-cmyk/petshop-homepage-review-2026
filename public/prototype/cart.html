@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f15a24">
   <title>Корзина — Petshop</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="cart.css">
+  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="cart.css?v=6">
 </head>
 <body class="cart-page">
   <svg class="svg-sprite" aria-hidden="true">
@@ -90,9 +90,9 @@
         <div class="cart-delivery-head"><span>Сегодня</span><div><b>Курьерская доставка</b><small>18:00–22:00</small></div><em>Бесплатно</em></div>
 
         <div class="cart-items" data-cart-items>
-          <article class="cart-item" data-cart-item data-price="519" data-old-price="590" data-quantity="2">
+          <article class="cart-item" data-cart-item data-context="food" data-price="519" data-old-price="590" data-quantity="2">
             <label class="cart-check cart-item__check"><input type="checkbox" checked data-item-check><i><svg><use href="#i-check"/></svg></i></label>
-            <a class="cart-item__image" href="#" data-toast="Открываем карточку Savita Sterilised"><img src="assets/product-rabbit.jpg" alt="Savita Sterilised с кроликом"></a>
+            <button class="cart-item__image" type="button" aria-label="Открыть Savita Sterilised" data-product-open><img src="assets/product-rabbit.jpg" alt="Savita Sterilised с кроликом"></button>
             <div class="cart-item__info">
               <span class="cart-item__badge">Хит</span>
               <h2>Savita Sterilised корм с кроликом и овощами</h2>
@@ -106,9 +106,9 @@
             <div class="quantity" aria-label="Количество товара"><button type="button" aria-label="Уменьшить количество" data-quantity-minus>−</button><b data-quantity-value>2</b><button type="button" aria-label="Увеличить количество" data-quantity-plus>+</button></div>
           </article>
 
-          <article class="cart-item" data-cart-item data-price="1099" data-old-price="1249" data-quantity="1">
+          <article class="cart-item" data-cart-item data-context="food" data-price="1099" data-old-price="1249" data-quantity="1">
             <label class="cart-check cart-item__check"><input type="checkbox" checked data-item-check><i><svg><use href="#i-check"/></svg></i></label>
-            <a class="cart-item__image" href="#" data-toast="Открываем карточку Savita Renal"><img src="assets/product-renal.png" alt="Savita Renal"></a>
+            <button class="cart-item__image" type="button" aria-label="Открыть Savita Renal" data-product-open><img src="assets/product-renal.png" alt="Savita Renal"></button>
             <div class="cart-item__info">
               <span class="cart-item__badge cart-item__badge--purple">−12%</span>
               <h2>Savita Renal сухой корм для здоровья почек</h2>
@@ -122,9 +122,9 @@
             <div class="quantity" aria-label="Количество товара"><button type="button" aria-label="Уменьшить количество" data-quantity-minus>−</button><b data-quantity-value>1</b><button type="button" aria-label="Увеличить количество" data-quantity-plus>+</button></div>
           </article>
 
-          <article class="cart-item" data-cart-item data-price="579" data-old-price="644" data-quantity="2">
+          <article class="cart-item" data-cart-item data-context="litter" data-price="579" data-old-price="644" data-quantity="2">
             <label class="cart-check cart-item__check"><input type="checkbox" checked data-item-check><i><svg><use href="#i-check"/></svg></i></label>
-            <a class="cart-item__image" href="#" data-toast="Открываем карточку Van Cat"><img src="assets/product-litter.png" alt="Van Cat наполнитель"></a>
+            <button class="cart-item__image" type="button" aria-label="Открыть Van Cat" data-product-open><img src="assets/product-litter.png" alt="Van Cat наполнитель"></button>
             <div class="cart-item__info">
               <span class="cart-item__badge cart-item__badge--green">Выбор хозяев</span>
               <h2>Van Cat комкующийся наполнитель без пыли</h2>
@@ -164,6 +164,18 @@
       </aside>
     </div>
 
+    <section class="context-recommendations" data-context-recommendations>
+      <div class="context-recommendations__head">
+        <div><span>Умная подборка</span><h2>Дополнить покупку</h2><p data-context-reason>Потому что в корзине сухой корм</p></div>
+        <div class="context-tabs" role="tablist" aria-label="Тип рекомендаций">
+          <button class="is-active" type="button" role="tab" aria-selected="true" data-context-tab="food">К сухому корму</button>
+          <button type="button" role="tab" aria-selected="false" data-context-tab="litter">К наполнителю</button>
+          <button type="button" role="tab" aria-selected="false" data-context-tab="toys">Игрушки</button>
+        </div>
+      </div>
+      <div class="context-product-grid" role="tabpanel" data-context-products></div>
+    </section>
+
     <section class="recommendations">
       <div class="recommendations__head"><div><h2>С этим покупают</h2><p>Полезное дополнение к вашему заказу</p></div><a href="catalog.html">Смотреть всё <svg><use href="#i-chevron"/></svg></a></div>
       <div class="recommendation-grid">
@@ -202,8 +214,23 @@
     </div>
   </aside>
 
+  <aside class="product-quickview" aria-hidden="true" data-product-quickview>
+    <div class="product-quickview__panel" role="dialog" aria-modal="true" aria-labelledby="quickview-title">
+      <button class="product-quickview__close" type="button" aria-label="Закрыть карточку" data-quickview-close><svg><use href="#i-close"/></svg></button>
+      <div class="product-quickview__visual" data-quickview-visual></div>
+      <div class="product-quickview__content">
+        <span>Быстрый просмотр</span>
+        <h2 id="quickview-title" data-quickview-title></h2>
+        <div class="product-quickview__rating" data-quickview-rating></div>
+        <p>Подходит вашему питомцу и доступно с быстрой доставкой Petshop.</p>
+        <ul><li>Проверенный товар</li><li>Можно вернуть в течение 14 дней</li><li>Доставка сегодня или завтра</li></ul>
+        <div class="product-quickview__buy"><div><strong data-quickview-price></strong><del data-quickview-old></del></div><button type="button" data-quickview-add>Добавить в корзину</button></div>
+      </div>
+    </div>
+  </aside>
+
   <div class="toast" role="status" aria-live="polite" data-toast-box></div>
-  <script src="script.js"></script>
-  <script src="cart.js"></script>
+  <script src="script.js?v=6"></script>
+  <script src="cart.js?v=6"></script>
 </body>
 </html>
