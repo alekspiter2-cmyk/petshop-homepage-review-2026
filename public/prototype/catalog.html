@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f15a24">
   <title>Каталог — Petshop</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="catalog.css">
+  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="catalog.css?v=7">
 </head>
 <body class="catalog-page">
   <svg class="svg-sprite" aria-hidden="true">
@@ -67,6 +67,7 @@
       <a href="catalog.html#other-pets">Другие питомцы</a>
       <a href="#" data-toast="Открываем список брендов">Бренды</a>
       <a href="index.html#auto">Автозаказ</a>
+      <a href="stores.html">Магазины</a>
       <span><svg><use href="#i-pin"/></svg> Сегодня с 18:00</span>
     </nav>
   </header>
@@ -78,7 +79,7 @@
   <footer class="footer">
     <div class="shell footer__inner">
       <a class="logo logo--footer" href="index.html"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a>
-      <nav><a href="#">Доставка и оплата</a><a href="#">Магазины</a><a href="#">Помощь</a><a href="#">О компании</a></nav>
+      <nav><a href="#">Доставка и оплата</a><a href="stores.html">Магазины</a><a href="#">Помощь</a><a href="#">О компании</a></nav>
       <div><a href="tel:+78123130101">+7 (812) 313-01-01</a><span>Круглосуточно</span></div>
     </div>
   </footer>
@@ -94,13 +95,13 @@
   <aside class="mobile-drawer" aria-hidden="true" data-mobile-drawer>
     <div class="mobile-drawer__panel">
       <div class="mobile-drawer__head"><a class="logo" href="index.html"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a><button class="icon-button" type="button" aria-label="Закрыть меню" data-menu-close><svg><use href="#i-close"/></svg></button></div>
-      <nav><a href="catalog.html">Каталог</a><a href="catalog.html?page=cats">Кошки</a><a href="catalog.html?page=dogs">Собаки</a><a href="catalog.html#vet">Ветаптека</a><a href="index.html#auto">Автозаказ</a><a href="#" data-toast="Открываем магазины">Магазины</a></nav>
+      <nav><a href="catalog.html">Каталог</a><a href="catalog.html?page=cats">Кошки</a><a href="catalog.html?page=dogs">Собаки</a><a href="catalog.html#vet">Ветаптека</a><a href="index.html#auto">Автозаказ</a><a href="stores.html">Магазины</a></nav>
       <div class="drawer-delivery"><svg><use href="#i-pin"/></svg><span><b>Доставим сегодня</b><small>Санкт-Петербург</small></span></div>
     </div>
   </aside>
 
   <div class="toast" role="status" aria-live="polite" data-toast-box></div>
-  <script src="script.js"></script>
-  <script src="catalog.js"></script>
+  <script src="script.js?v=7"></script>
+  <script src="catalog.js?v=7"></script>
 </body>
 </html>

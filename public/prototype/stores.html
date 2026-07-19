@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f15a24">
+  <title>Магазины и пункты выдачи — Petshop</title>
+  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="stores.css?v=7">
+</head>
+<body class="stores-page">
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4.3 3.2-6.5 7-6.5s6.3 2.2 7 6.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.4c0 5.4-8.8 11-8.8 11s-8.8-5.6-8.8-11A4.7 4.7 0 0 1 12 6.1a4.7 4.7 0 0 1 8.8 2.3Z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m4 7 8-4 8 4-8 4-8-4Zm0 0v10l8 4 8-4V7M12 11v10"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M9 21v-7h6v7"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h4a4 4 0 0 0 4-4v-2M12 6h4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7 3 4 5c-1 7 8 16 15 15l2-3-5-3-2 2c-3-1-5-3-6-6l2-2-3-5Z"/></symbol>
+  </svg>
+
+  <div class="topbar">
+    <div class="shell topbar__inner">
+      <a class="topbar__location" href="stores.html"><svg><use href="#i-pin"/></svg>Санкт-Петербург</a>
+      <span>Доставим сегодня · бесплатно от 549 ₽</span>
+      <a href="tel:+78123130101">Помощь 24/7 · +7 (812) 313-01-01</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="shell header-main">
+      <button class="icon-button mobile-menu" type="button" aria-label="Открыть меню" aria-expanded="false" data-menu-open><svg><use href="#i-menu"/></svg></button>
+      <a class="logo" href="index.html" aria-label="Petshop — главная"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a>
+      <a class="catalog-button" href="catalog.html"><svg><use href="#i-grid"/></svg>Каталог</a>
+      <form class="search search--desktop" data-search-form>
+        <input type="search" placeholder="Искать в Petshop" aria-label="Поиск в Petshop">
+        <button type="submit" aria-label="Найти"><svg><use href="#i-search"/></svg></button>
+      </form>
+      <nav class="account-nav" aria-label="Личный кабинет">
+        <a href="#" data-toast="Вход в личный кабинет"><svg><use href="#i-user"/></svg><span>Войти</span></a>
+        <a href="#" data-toast="Открываем заказы"><svg><use href="#i-box"/></svg><span>Заказы</span></a>
+        <a href="#" data-toast="Открываем избранное"><svg><use href="#i-heart"/></svg><span>Избранное</span></a>
+        <a href="cart.html" class="cart-link"><svg><use href="#i-cart"/></svg><span>Корзина</span><b data-cart-count>3</b></a>
+      </nav>
+      <a class="mobile-cart" href="cart.html" aria-label="Корзина"><svg><use href="#i-cart"/></svg><b data-cart-count>3</b></a>
+    </div>
+    <div class="shell mobile-search-wrap">
+      <form class="search search--mobile" data-search-form><svg><use href="#i-search"/></svg><input type="search" placeholder="Искать в Petshop" aria-label="Поиск в Petshop"></form>
+    </div>
+    <nav class="shell shortcut-nav" aria-label="Разделы магазина">
+      <a class="shortcut-nav__accent" href="index.html#catalog">Акции</a>
+      <a href="catalog.html?page=cats">Кошки</a><a href="catalog.html?page=dogs">Собаки</a><a href="catalog.html#vet">Ветаптека</a><a href="catalog.html#young">Котята и щенки</a><a href="catalog.html#other-pets">Другие питомцы</a><a href="#" data-toast="Открываем список брендов">Бренды</a><a href="index.html#auto">Автозаказ</a><a class="is-current" href="stores.html">Магазины</a>
+      <span><svg><use href="#i-pin"/></svg> Сегодня с 18:00</span>
+    </nav>
+  </header>
+
+  <main class="stores-main">
+    <section class="shell stores-hero">
+      <nav class="stores-breadcrumbs" aria-label="Хлебные крошки"><a href="index.html">Главная</a><span>›</span><b>Магазины</b></nav>
+      <div class="stores-hero__body">
+        <div>
+          <span class="stores-hero__eyebrow">Рядом с вами</span>
+          <h1>Магазины и пункты выдачи</h1>
+          <p>Проверьте часы работы, доступные услуги и постройте маршрут.</p>
+        </div>
+        <button class="city-button" type="button" data-city-open><svg><use href="#i-pin"/></svg><span><small>Ваш город</small><b data-current-city>Санкт-Петербург</b></span><svg><use href="#i-chevron"/></svg></button>
+      </div>
+      <div class="stores-benefits" aria-label="Преимущества магазинов">
+        <span><i>0 ₽</i><b>Бесплатный самовывоз</b></span>
+        <span><i>✓</i><b>Цена сайта при заказе</b></span>
+        <span><i>●</i><b>Бонусы Petshop</b></span>
+      </div>
+    </section>
+
+    <section class="shell stores-content">
+      <div class="stores-toolbar">
+        <label class="store-search"><svg><use href="#i-search"/></svg><input type="search" placeholder="Адрес, метро или район" aria-label="Найти магазин" data-store-search><button type="button" aria-label="Очистить поиск" data-search-clear><svg><use href="#i-close"/></svg></button></label>
+        <div class="view-switch" aria-label="Вид магазинов">
+          <button class="is-active" type="button" data-store-view="list" aria-pressed="true"><svg><use href="#i-list"/></svg>Список</button>
+          <button type="button" data-store-view="map" aria-pressed="false"><svg><use href="#i-map"/></svg>На карте</button>
+        </div>
+      </div>
+
+      <div class="store-filters" aria-label="Фильтры магазинов">
+        <button class="is-active" type="button" data-store-filter="all">Все</button>
+        <button type="button" data-store-filter="open">Открыто сейчас</button>
+        <button type="button" data-store-filter="vet">Ветеринарный кабинет</button>
+        <button type="button" data-store-filter="pickup">Самовывоз сегодня</button>
+      </div>
+
+      <div class="stores-result-head"><div><h2>Рядом с вами</h2><p data-result-summary>8 магазинов в Санкт-Петербурге</p></div><button type="button" data-nearby><span>⌖</span> Ближе всего</button></div>
+
+      <section class="stores-panel is-active" data-store-panel="list" aria-label="Список магазинов">
+        <div class="store-grid" data-store-list></div>
+        <div class="store-empty" hidden data-store-empty><span>⌕</span><h3>Ничего не нашли</h3><p>Попробуйте другой адрес или сбросьте фильтр.</p><button type="button" data-reset-filters>Показать все магазины</button></div>
+      </section>
+
+      <section class="stores-panel" data-store-panel="map" aria-label="Карта магазинов">
+        <div class="store-map">
+          <div class="store-map__canvas" data-map-canvas>
+            <span class="map-water">Нева</span><span class="map-park map-park--one"></span><span class="map-park map-park--two"></span>
+            <i class="map-road map-road--one"></i><i class="map-road map-road--two"></i><i class="map-road map-road--three"></i><i class="map-road map-road--four"></i>
+            <div class="map-label map-label--center">Центр</div><div class="map-label map-label--north">Приморский район</div><div class="map-label map-label--south">Московский район</div>
+            <div data-map-markers></div>
+            <div class="map-controls" aria-hidden="true"><button type="button">+</button><button type="button">−</button></div>
+          </div>
+          <aside class="map-store-card" data-map-store-card></aside>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <a class="logo logo--footer" href="index.html"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a>
+      <nav><a href="#">Доставка и оплата</a><a class="is-current" href="stores.html">Магазины</a><a href="#">Помощь</a><a href="#">О компании</a></nav>
+      <div><a href="tel:+78123130101">+7 (812) 313-01-01</a><span>Круглосуточно</span></div>
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom-nav" aria-label="Мобильная навигация">
+    <a href="index.html"><svg><use href="#i-home"/></svg><span>Главная</span></a><a href="catalog.html"><svg><use href="#i-grid"/></svg><span>Каталог</span></a><a href="#" data-toast="Нажмите на строку поиска"><svg><use href="#i-search"/></svg><span>Поиск</span></a><a href="#" data-toast="Открываем заказы"><svg><use href="#i-box"/></svg><span>Заказы</span></a><a href="cart.html"><svg><use href="#i-cart"/></svg><span>Корзина</span><b data-cart-count>3</b></a>
+  </nav>
+
+  <aside class="mobile-drawer" aria-hidden="true" data-mobile-drawer><div class="mobile-drawer__panel"><div class="mobile-drawer__head"><a class="logo" href="index.html"><img src="assets/petshop-logo.svg" alt="Petshop.ru"></a><button class="icon-button" type="button" aria-label="Закрыть меню" data-menu-close><svg><use href="#i-close"/></svg></button></div><nav><a href="catalog.html">Каталог</a><a href="catalog.html?page=cats">Кошки</a><a href="catalog.html?page=dogs">Собаки</a><a href="catalog.html#vet">Ветаптека</a><a href="index.html#auto">Автозаказ</a><a class="is-current" href="stores.html">Магазины</a></nav><div class="drawer-delivery"><svg><use href="#i-pin"/></svg><span><b>Доставим сегодня</b><small>Санкт-Петербург</small></span></div></div></aside>
+
+  <div class="city-popover" hidden data-city-popover><button class="city-popover__backdrop" type="button" aria-label="Закрыть выбор города" data-city-close></button><section role="dialog" aria-modal="true" aria-labelledby="city-title"><div><h2 id="city-title">Выберите город</h2><button type="button" aria-label="Закрыть" data-city-close><svg><use href="#i-close"/></svg></button></div><label><svg><use href="#i-search"/></svg><input type="search" placeholder="Найти город" data-city-search></label><div class="city-list" data-city-list><button class="is-active" type="button">Санкт-Петербург</button><button type="button">Москва</button><button type="button">Казань</button><button type="button">Екатеринбург</button><button type="button">Нижний Новгород</button><button type="button">Ростов-на-Дону</button></div></section></div>
+
+  <div class="store-modal" hidden data-store-modal><button class="store-modal__backdrop" type="button" aria-label="Закрыть карточку магазина" data-store-modal-close></button><section role="dialog" aria-modal="true" aria-labelledby="store-modal-title" data-store-modal-content></section></div>
+  <div class="toast" role="status" aria-live="polite" data-toast-box></div>
+  <script src="script.js?v=7"></script>
+  <script src="stores.js?v=7"></script>
+</body>
+</html>
