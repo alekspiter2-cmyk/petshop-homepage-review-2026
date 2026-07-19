@@ -138,10 +138,15 @@ document.querySelector('[data-city-search]')?.addEventListener('input', (event) 
 });
 document.querySelector('[data-city-list]')?.addEventListener('click', (event) => {
   const button = event.target.closest('button'); if (!button) return;
+  if (button.textContent !== 'Санкт-Петербург') {
+    setCityPopover(false);
+    if (typeof showToast === 'function') showToast(`Адреса в городе ${button.textContent} добавим на следующем этапе`);
+    return;
+  }
   document.querySelectorAll('[data-city-list] button').forEach((item) => item.classList.toggle('is-active', item === button));
   document.querySelector('[data-current-city]').textContent = button.textContent;
   setCityPopover(false);
-  if (typeof showToast === 'function') showToast(button.textContent === 'Санкт-Петербург' ? 'Город выбран' : `В прототипе показываем пример для города ${button.textContent}`);
+  if (typeof showToast === 'function') showToast('Город выбран');
 });
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeStoreModal(); setCityPopover(false); } });
 
