@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f15a24">
   <title>Корзина — Petshop</title>
-  <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="cart.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="cart.css?v=9">
+  <link rel="stylesheet" href="gallery.css?v=9">
 </head>
 <body class="cart-page">
   <svg class="svg-sprite" aria-hidden="true">
@@ -107,19 +108,19 @@
             <div class="quantity" aria-label="Количество товара"><button type="button" aria-label="Уменьшить количество" data-quantity-minus>−</button><b data-quantity-value>2</b><button type="button" aria-label="Увеличить количество" data-quantity-plus>+</button></div>
           </article>
 
-          <article class="cart-item" data-cart-item data-context="food" data-price="1099" data-old-price="1249" data-quantity="1">
+          <article class="cart-item" data-cart-item data-context="food" data-gallery="royal" data-price="5268" data-old-price="5690" data-quantity="1">
             <label class="cart-check cart-item__check"><input type="checkbox" checked data-item-check><i><svg><use href="#i-check"/></svg></i></label>
-            <button class="cart-item__image" type="button" aria-label="Открыть Savita Renal" data-product-open><img src="assets/product-renal.png" alt="Savita Renal"></button>
+            <button class="cart-item__image" type="button" aria-label="Открыть Royal Canin Sterilised 37" data-product-open><img src="assets/gallery-royal-01.jpg" alt="Royal Canin Sterilised 37"></button>
             <div class="cart-item__info">
-              <span class="cart-item__badge cart-item__badge--purple">−12%</span>
-              <h2>Savita Renal сухой корм для здоровья почек</h2>
-              <p>Ветеринарная линейка · 1,5 кг</p>
-              <div class="cart-item__meta"><span>★ 4,9 · 842 отзыва</span><b>Сегодня</b></div>
-              <div class="cart-item__mobile-price"><strong data-line-price>1 099 ₽</strong><del data-line-old>1 249 ₽</del></div>
+              <span class="cart-item__badge cart-item__badge--purple">Выбор Petshop</span>
+              <h2>Royal Canin Sterilised 37 для стерилизованных кошек</h2>
+              <p>Полнорационный сухой корм · 4 кг</p>
+              <div class="cart-item__meta"><span>★ 5,0 · 557 отзывов</span><b>Сегодня</b></div>
+              <div class="cart-item__mobile-price"><strong data-line-price>5 268 ₽</strong><del data-line-old>5 690 ₽</del></div>
               <div class="cart-item__mobile-controls"></div>
             </div>
             <div class="cart-item__actions"><button type="button" aria-label="В избранное" data-favorite><svg><use href="#i-heart"/></svg></button><button type="button" aria-label="Удалить товар" data-remove-item><svg><use href="#i-trash"/></svg></button></div>
-            <div class="cart-item__price"><strong data-line-price>1 099 ₽</strong><del data-line-old>1 249 ₽</del><small>1 099 ₽ за шт.</small></div>
+            <div class="cart-item__price"><strong data-line-price>5 268 ₽</strong><del data-line-old>5 690 ₽</del><small>5 268 ₽ за шт.</small></div>
             <div class="quantity" aria-label="Количество товара"><button type="button" aria-label="Уменьшить количество" data-quantity-minus>−</button><b data-quantity-value>1</b><button type="button" aria-label="Увеличить количество" data-quantity-plus>+</button></div>
           </article>
 
@@ -215,23 +216,9 @@
     </div>
   </aside>
 
-  <aside class="product-quickview" aria-hidden="true" data-product-quickview>
-    <div class="product-quickview__panel" role="dialog" aria-modal="true" aria-labelledby="quickview-title">
-      <button class="product-quickview__close" type="button" aria-label="Закрыть карточку" data-quickview-close><svg><use href="#i-close"/></svg></button>
-      <div class="product-quickview__visual" data-quickview-visual></div>
-      <div class="product-quickview__content">
-        <span>Быстрый просмотр</span>
-        <h2 id="quickview-title" data-quickview-title></h2>
-        <div class="product-quickview__rating" data-quickview-rating></div>
-        <p>Подходит вашему питомцу и доступно с быстрой доставкой Petshop.</p>
-        <ul><li>Проверенный товар</li><li>Можно вернуть в течение 14 дней</li><li>Доставка сегодня или завтра</li></ul>
-        <div class="product-quickview__buy"><div><strong data-quickview-price></strong><del data-quickview-old></del></div><button type="button" data-quickview-add>Добавить в корзину</button></div>
-      </div>
-    </div>
-  </aside>
-
   <div class="toast" role="status" aria-live="polite" data-toast-box></div>
-  <script src="script.js?v=8"></script>
-  <script src="cart.js?v=8"></script>
+  <script src="gallery.js?v=9"></script>
+  <script src="script.js?v=9"></script>
+  <script src="cart.js?v=9"></script>
 </body>
 </html>

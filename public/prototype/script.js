@@ -19,7 +19,7 @@ function changeCart(delta) {
 }
 
 const products = [
-  { image: 'product-renal.png', badge: '−12%', badgeClass: 'orange', price: '1 099 ₽', oldPrice: '1 249 ₽', title: 'Savita Renal сухой корм для здоровья почек', rating: '4,9', reviews: '842 отзыва', delivery: 'Завтра' },
+  { id: 'royal-canin-sterilised', image: 'gallery-royal-01.jpg', galleryKey: 'royal', badge: 'Выбор Petshop', badgeClass: 'orange', price: '5 268 ₽', oldPrice: '5 690 ₽', title: 'Royal Canin Sterilised 37 для стерилизованных кошек, 4 кг', rating: '5,0', reviews: '557 отзывов', delivery: 'Сегодня', description: 'Полнорационный сухой корм для взрослых стерилизованных кошек и кастрированных котов от 1 до 7 лет.' },
   { image: 'product-rabbit.jpg', badge: 'Хит', badgeClass: 'pink', price: '519 ₽', oldPrice: '590 ₽', title: 'Savita Sterilised корм с кроликом и овощами', rating: '4,8', reviews: '291 отзыв', delivery: 'Сегодня' },
   { image: 'product-litter.png', badge: 'Новинка', badgeClass: 'purple', price: '579 ₽', oldPrice: '644 ₽', title: 'Van Cat комкующийся наполнитель без пыли', rating: '4,9', reviews: '1 230 отзывов', delivery: 'Завтра' },
   { image: 'product-salmon.png', badge: 'Цена дня', badgeClass: 'green', price: '3 959 ₽', oldPrice: '4 399 ₽', title: 'Корм для стерилизованных кошек с лососем', rating: '5,0', reviews: '536 отзывов', delivery: 'Сегодня' },
@@ -39,6 +39,8 @@ const products = [
   { image: 'product-renal.png', badge: 'Только у нас', badgeClass: 'blue', price: '1 159 ₽', oldPrice: '1 299 ₽', title: 'Специализированный корм Savita Care', rating: '4,8', reviews: '307 отзывов', delivery: 'Сегодня' }
 ];
 
+products.forEach((product, index) => { product.id ||= `product-${index + 1}`; });
+
 const promos = [
   { tone: 'purple', icon: '↻', eyebrow: 'Автозаказ Petshop', title: 'До −30% на любимые товары', text: 'Настройте один раз — доставим по расписанию', image: 'product-turkey.png', action: 'Настроить', toast: 'Настройка автозаказа открыта' },
   { tone: 'orange', icon: '%', eyebrow: 'Только до воскресенья', title: '−20% на влажный корм', text: 'Выгодные наборы для кошек и собак', image: 'product-rabbit.jpg', action: 'Выбрать', toast: 'Открыли товары со скидкой' },
@@ -47,26 +49,20 @@ const promos = [
 ];
 
 function productCard(product) {
+  const galleryImages = window.PetshopGallery?.imagesFor(product) || [`assets/${product.image}`];
+  const previewImages = galleryImages.slice(0, 3);
+  const hasPreview = previewImages.length > 1;
   return `
-    <article class="product-card">
+    <article class="product-card" tabindex="0" aria-label="Открыть товар ${product.title}" data-product-card data-product-id="${product.id}">
       <div class="product-card__visual" data-card-preview>
         <span class="badge badge--${product.badgeClass}">${product.badge}</span>
         <button class="favorite" type="button" aria-label="Добавить в избранное" aria-pressed="false" data-favorite><svg><use href="#i-heart"/></svg></button>
         <div class="preview-images">
-          <img class="preview-image preview-image--1 is-active" src="assets/${product.image}" alt="${product.title}" data-preview-image="0">
-          <img class="preview-image preview-image--2" src="assets/${product.image}" alt="" data-preview-image="1">
-          <img class="preview-image preview-image--3" src="assets/${product.image}" alt="" data-preview-image="2">
+          ${previewImages.map((source, index) => `<img class="preview-image${index === 0 ? ' is-active' : ''}" src="${source}" alt="${index === 0 ? product.title : ''}" data-preview-image="${index}"${index > 0 ? ' loading="lazy"' : ''}>`).join('')}
         </div>
-        <div class="preview-zones" aria-hidden="true">
-          <span class="preview-zone" data-preview-zone="0"></span>
-          <span class="preview-zone" data-preview-zone="1"></span>
-          <span class="preview-zone" data-preview-zone="2"></span>
-        </div>
-        <div class="preview-dots" aria-hidden="true">
-          <i class="is-active" data-preview-dot="0"></i>
-          <i data-preview-dot="1"></i>
-          <i data-preview-dot="2"></i>
-        </div>
+        ${hasPreview ? `<div class="preview-zones" aria-hidden="true">${previewImages.map((_, index) => `<span class="preview-zone" data-preview-zone="${index}"></span>`).join('')}</div>` : ''}
+        ${hasPreview ? `<div class="preview-dots" aria-hidden="true">${previewImages.map((_, index) => `<i class="${index === 0 ? 'is-active' : ''}" data-preview-dot="${index}"></i>`).join('')}</div>` : ''}
+        ${galleryImages.length > 1 ? `<button class="gallery-count" type="button" aria-label="Открыть все фотографии товара: ${galleryImages.length}" data-gallery-open>${galleryImages.length} фото</button>` : ''}
       </div>
       <div class="price-row"><strong>${product.price}</strong><del>${product.oldPrice}</del></div>
       <h3>${product.title}</h3>
@@ -149,12 +145,6 @@ $$('[data-search-form]').forEach((form) => {
 });
 
 document.addEventListener('click', (event) => {
-  const previewZone = event.target.closest('[data-preview-zone]');
-  if (previewZone) {
-    setCardPreview(previewZone.closest('[data-card-preview]'), Number(previewZone.dataset.previewZone));
-    return;
-  }
-
   const addButton = event.target.closest('[data-add-cart]');
   if (addButton) {
     const added = addButton.classList.toggle('is-added');
@@ -180,8 +170,25 @@ document.addEventListener('click', (event) => {
   }
 
   const toastElement = event.target.closest('[data-toast]');
-  if (toastElement) showToast(toastElement.dataset.toast);
+  if (toastElement) {
+    showToast(toastElement.dataset.toast);
+    return;
+  }
+
+  const productCardElement = event.target.closest('[data-product-card]');
+  if (productCardElement) openProduct(productCardElement);
 });
+
+function openProduct(card) {
+  const product = products.find((item) => item.id === card?.dataset.productId);
+  if (!product) return;
+  window.PetshopGallery?.open(product, {
+    onAdd: () => {
+      changeCart(1);
+      showToast('Товар добавлен в корзину');
+    }
+  });
+}
 
 function setCardPreview(visual, index) {
   if (!visual) return;
@@ -229,6 +236,12 @@ drawer?.addEventListener('click', (event) => {
   if (event.target === drawer) setDrawer(false);
 });
 document.addEventListener('keydown', (event) => {
+  const card = event.target.closest?.('[data-product-card]');
+  if (card && (event.key === 'Enter' || event.key === ' ')) {
+    event.preventDefault();
+    openProduct(card);
+    return;
+  }
   if (event.key === 'Escape') setDrawer(false);
 });
 $$('.mobile-drawer a').forEach((link) => link.addEventListener('click', () => setDrawer(false)));

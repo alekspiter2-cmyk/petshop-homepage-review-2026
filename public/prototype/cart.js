@@ -43,8 +43,6 @@ const autoOrderCard = document.querySelector('.auto-order-card');
 const emptyState = document.querySelector('[data-cart-empty]');
 const contextSection = document.querySelector('[data-context-recommendations]');
 const contextProducts = document.querySelector('[data-context-products]');
-const quickView = document.querySelector('[data-product-quickview]');
-let quickViewProduct = null;
 
 function formatRub(value) {
   return `${new Intl.NumberFormat('ru-RU').format(Math.max(0, Math.round(value)))} ₽`;
@@ -114,7 +112,11 @@ function productDataFromCard(card) {
       price: Number(card.dataset.price),
       oldPrice: Number(card.dataset.oldPrice),
       image: card.querySelector('.cart-item__image img')?.getAttribute('src'),
-      alt: card.querySelector('.cart-item__image img')?.getAttribute('alt') || ''
+      alt: card.querySelector('.cart-item__image img')?.getAttribute('alt') || '',
+      galleryKey: card.dataset.gallery || undefined,
+      badge: card.querySelector('.cart-item__badge')?.textContent.trim() || 'Выбор Petshop',
+      delivery: card.querySelector('.cart-item__meta b')?.textContent.trim() || 'Сегодня',
+      description: card.querySelector('.cart-item__info p')?.textContent.trim()
     };
   }
 
@@ -146,32 +148,28 @@ function productDataFromCard(card) {
   };
 }
 
-function openQuickView(card) {
-  if (!quickView || !card) return;
-  quickViewProduct = productDataFromCard(card);
-  const visual = quickView.querySelector('[data-quickview-visual]');
-  visual.innerHTML = quickViewProduct.image
-    ? `<img src="${quickViewProduct.image}" alt="${quickViewProduct.alt}">`
-    : `<span aria-hidden="true">${quickViewProduct.emoji || '🐾'}</span>`;
-  quickView.querySelector('[data-quickview-title]').textContent = quickViewProduct.title;
-  quickView.querySelector('[data-quickview-rating]').textContent = quickViewProduct.rating || '★ 4,9 · проверенный товар';
-  quickView.querySelector('[data-quickview-price]').textContent = formatRub(quickViewProduct.price);
-  quickView.querySelector('[data-quickview-old]').textContent = formatRub(quickViewProduct.oldPrice || quickViewProduct.price);
-  const addButton = quickView.querySelector('[data-quickview-add]');
-  const alreadyAdded = quickViewProduct.kind === 'recommendation' && cartState.recommendations.has(quickViewProduct.key);
-  addButton.disabled = alreadyAdded;
-  addButton.textContent = alreadyAdded ? 'Уже в корзине' : quickViewProduct.kind === 'cart' ? 'Добавить ещё' : 'Добавить в корзину';
-  quickView.classList.add('is-open');
-  quickView.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('quickview-open');
-  quickView.querySelector('[data-quickview-close]')?.focus();
-}
-
-function closeQuickView() {
-  if (!quickView) return;
-  quickView.classList.remove('is-open');
-  quickView.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('quickview-open');
+function openProductGallery(card) {
+  if (!card) return;
+  const selectedProduct = productDataFromCard(card);
+  window.PetshopGallery?.open(selectedProduct, {
+    onAdd: () => {
+      if (selectedProduct.kind === 'cart') {
+        selectedProduct.item.dataset.quantity = Number(selectedProduct.item.dataset.quantity) + 1;
+        updateLine(selectedProduct.item);
+        updateCart();
+        showToast?.('Добавили ещё один товар');
+        return;
+      }
+      if (!cartState.recommendations.has(selectedProduct.key)) {
+        cartState.recommendations.set(selectedProduct.key, {
+          price: selectedProduct.price,
+          oldPrice: selectedProduct.oldPrice || selectedProduct.price
+        });
+        updateCart();
+        showToast?.('Товар добавлен в корзину');
+      }
+    }
+  });
 }
 
 function activeItems() {
@@ -275,29 +273,6 @@ document.addEventListener('change', (event) => {
 });
 
 document.addEventListener('click', (event) => {
-  const quickViewClose = event.target.closest('[data-quickview-close]');
-  if (quickViewClose || event.target === quickView) {
-    closeQuickView();
-    return;
-  }
-
-  const quickViewAdd = event.target.closest('[data-quickview-add]');
-  if (quickViewAdd && quickViewProduct) {
-    if (quickViewProduct.kind === 'cart') {
-      quickViewProduct.item.dataset.quantity = Number(quickViewProduct.item.dataset.quantity) + 1;
-      updateLine(quickViewProduct.item);
-      updateCart();
-      showToast?.('Добавили ещё один товар');
-    } else if (!cartState.recommendations.has(quickViewProduct.key)) {
-      cartState.recommendations.set(quickViewProduct.key, { price: quickViewProduct.price, oldPrice: quickViewProduct.oldPrice || quickViewProduct.price });
-      updateCart();
-      quickViewAdd.disabled = true;
-      quickViewAdd.textContent = 'Уже в корзине';
-      showToast?.('Товар добавлен в корзину');
-    }
-    return;
-  }
-
   const contextTab = event.target.closest('[data-context-tab]');
   if (contextTab) {
     cartState.activeContext = contextTab.dataset.contextTab;
@@ -323,7 +298,7 @@ document.addEventListener('click', (event) => {
 
   const productOpen = event.target.closest('[data-product-open]');
   if (productOpen) {
-    openQuickView(productOpen.closest('[data-cart-item]'));
+    openProductGallery(productOpen.closest('[data-cart-item]'));
     return;
   }
 
@@ -412,11 +387,7 @@ document.addEventListener('click', (event) => {
 
   const productCard = event.target.closest('[data-cart-item], .recommendation-card, .context-product');
   const interactive = event.target.closest('button, a, input, label');
-  if (productCard && !interactive) openQuickView(productCard);
-});
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && quickView?.classList.contains('is-open')) closeQuickView();
+  if (productCard && !interactive) openProductGallery(productCard);
 });
 
 document.querySelector('[data-promo-form]')?.addEventListener('submit', (event) => {
