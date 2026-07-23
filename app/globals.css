@@ -29,6 +29,7 @@ a { color: inherit; text-decoration: none; }
 .preview-page-desktop { position: relative; background: #fff; }
 .desktop-frame { width: 100%; height: 100vh; }
 .preview-switcher { position: fixed; z-index: 20; right: 18px; bottom: 18px; display: flex; gap: 4px; padding: 5px; border: 1px solid rgba(0,0,0,.08); border-radius: 14px; background: rgba(255,255,255,.94); box-shadow: 0 12px 34px rgba(0,0,0,.16); backdrop-filter: blur(12px); }
+.preview-page-desktop .preview-switcher { right: auto; left: 18px; }
 .preview-switcher a { padding: 9px 13px; border-radius: 10px; color: #6c7075; font-size: 11px; font-weight: 750; }
 .preview-switcher a.is-active { background: var(--orange); color: #fff; }
 
@@ -52,4 +53,5 @@ a { color: inherit; text-decoration: none; }
   .phone-speaker { display: none; }
   .mobile-frame { width: 100%; height: 100vh; border-radius: 0; }
   .preview-switcher { right: 8px; bottom: 8px; transform: scale(.9); transform-origin: right bottom; }
+  .preview-page-desktop .preview-switcher { right: auto; left: 8px; transform-origin: left bottom; }
 }

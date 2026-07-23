@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-label="Корм для рыб">
+  <rect width="640" height="640" rx="68" fill="#eef4ff"/><path d="M148 94h344l32 452H116z" fill="#506fff"/><path d="M162 94h316l-14 72H176z" fill="#fff"/>
+  <text x="320" y="141" text-anchor="middle" font-family="Arial" font-size="32" font-weight="700" fill="#405fe0">PETSHOP</text>
+  <circle cx="320" cy="326" r="126" fill="#e8fbff"/><path d="M230 332c58-82 151-82 196 0-45 82-138 82-196 0z" fill="#ff9948"/><path d="M230 332l-60-60v120z" fill="#ff6e3d"/><circle cx="380" cy="316" r="10" fill="#282735"/><path d="M285 282c22 23 22 77 0 100" fill="none" stroke="#fff" stroke-width="17"/>
+  <text x="320" y="500" text-anchor="middle" font-family="Arial" font-size="54" font-weight="800" fill="#fff">FISH</text>
+</svg>

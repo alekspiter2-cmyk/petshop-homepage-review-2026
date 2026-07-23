@@ -6,7 +6,9 @@
   <meta name="theme-color" content="#f15a24">
   <title>Магазины и пункты выдачи — Petshop</title>
   <link rel="stylesheet" href="styles.css?v=9">
-  <link rel="stylesheet" href="stores.css?v=9">
+  <link rel="stylesheet" href="stores.css?v=10">
+  <link rel="stylesheet" href="gallery.css?v=10">
+  <link rel="stylesheet" href="assistant.css?v=17">
 </head>
 <body class="stores-page">
   <svg class="svg-sprite" aria-hidden="true">
@@ -111,7 +113,7 @@
             <i class="map-road map-road--one"></i><i class="map-road map-road--two"></i><i class="map-road map-road--three"></i><i class="map-road map-road--four"></i>
             <div class="map-label map-label--center">Центр</div><div class="map-label map-label--north">Приморский район</div><div class="map-label map-label--south">Московский район</div>
             <div data-map-markers></div>
-            <div class="map-controls" aria-hidden="true"><button type="button">+</button><button type="button">−</button></div>
+            <div class="map-controls" aria-label="Масштаб карты"><button type="button" aria-label="Приблизить карту" data-map-zoom="in">+</button><button type="button" aria-label="Отдалить карту" data-map-zoom="out">−</button></div>
           </div>
           <aside class="map-store-card" data-map-store-card></aside>
         </div>
@@ -137,7 +139,9 @@
 
   <div class="store-modal" hidden data-store-modal><button class="store-modal__backdrop" type="button" aria-label="Закрыть карточку магазина" data-store-modal-close></button><section role="dialog" aria-modal="true" aria-labelledby="store-modal-title" data-store-modal-content></section></div>
   <div class="toast" role="status" aria-live="polite" data-toast-box></div>
+  <script src="gallery.js?v=10"></script>
   <script src="script.js?v=9"></script>
-  <script src="stores.js?v=9"></script>
+  <script src="stores.js?v=10"></script>
+  <script src="assistant.js?v=21"></script>
 </body>
 </html>

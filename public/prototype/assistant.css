@@ -1,0 +1,446 @@
+.petshop-assistant,
+.petshop-assistant * {
+  box-sizing: border-box;
+}
+
+.petshop-assistant-launcher {
+  position: fixed;
+  z-index: 88;
+  right: 24px;
+  bottom: 24px;
+  min-width: 194px;
+  height: 58px;
+  border: 0;
+  border-radius: 18px;
+  padding: 0 20px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #fff;
+  background: #7850ff;
+  box-shadow: 0 15px 38px rgba(80, 44, 192, .3);
+  font: 700 15px/1.1 Inter, Arial, sans-serif;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.petshop-assistant-launcher:hover {
+  transform: translateY(-2px);
+  background: #6840f5;
+  box-shadow: 0 18px 42px rgba(80, 44, 192, .38);
+}
+
+.petshop-assistant-launcher[hidden] {
+  display: none;
+}
+
+.petshop-assistant-launcher:focus-visible,
+.petshop-assistant button:focus-visible,
+.petshop-assistant input:focus-visible,
+.petshop-assistant a:focus-visible {
+  outline: 3px solid rgba(255, 112, 53, .45);
+  outline-offset: 2px;
+}
+
+.petshop-assistant-launcher__icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #7850ff;
+  background: #fff;
+  font-size: 21px;
+}
+
+.petshop-assistant-launcher__pulse {
+  position: absolute;
+  top: 8px;
+  left: 42px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #7850ff;
+  border-radius: 50%;
+  background: #ff763b;
+}
+
+.petshop-assistant {
+  position: fixed;
+  z-index: 89;
+  right: 24px;
+  bottom: 94px;
+  width: min(410px, calc(100vw - 32px));
+  height: min(680px, calc(100dvh - 118px));
+  border: 1px solid #e9e6f2;
+  border-radius: 28px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  color: #252231;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(34, 25, 66, .24);
+  font: 14px/1.4 Inter, Arial, sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(18px) scale(.98);
+  transform-origin: right bottom;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+
+.petshop-assistant.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.petshop-assistant__header {
+  min-height: 76px;
+  padding: 14px 14px 13px 16px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #fff;
+  background: linear-gradient(120deg, #6840f5, #8d65ff);
+}
+
+.petshop-assistant__avatar {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: #6840f5;
+  background: #fff;
+  font-size: 23px;
+  box-shadow: 0 5px 14px rgba(45, 18, 128, .18);
+}
+
+.petshop-assistant__heading {
+  min-width: 0;
+  flex: 1;
+}
+
+.petshop-assistant__heading strong,
+.petshop-assistant__heading span {
+  display: block;
+}
+
+.petshop-assistant__heading strong {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.petshop-assistant__heading span {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, .82);
+  font-size: 11px;
+}
+
+.petshop-assistant__header-action {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: rgba(255, 255, 255, .13);
+  font: 700 21px/1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.petshop-assistant__header-action:hover {
+  background: rgba(255, 255, 255, .22);
+}
+
+.petshop-assistant__messages {
+  min-height: 0;
+  padding: 18px 15px 8px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #f8f7fb;
+  scroll-behavior: smooth;
+}
+
+.petshop-assistant__day {
+  width: max-content;
+  margin: 0 auto 15px;
+  border-radius: 999px;
+  padding: 4px 9px;
+  color: #8a8499;
+  background: #eeecf4;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.petshop-assistant__message {
+  width: fit-content;
+  max-width: 88%;
+  margin: 0 0 10px;
+  border-radius: 17px;
+  padding: 11px 13px;
+  white-space: pre-line;
+}
+
+.petshop-assistant__message--assistant {
+  border-bottom-left-radius: 5px;
+  color: #373143;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(46, 39, 67, .07);
+}
+
+.petshop-assistant__message--user {
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+  color: #fff;
+  background: #7850ff;
+}
+
+.petshop-assistant__typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.petshop-assistant__typing i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a39eae;
+  animation: petshop-assistant-bounce 1s infinite alternate;
+}
+
+.petshop-assistant__typing i:nth-child(2) { animation-delay: .15s; }
+.petshop-assistant__typing i:nth-child(3) { animation-delay: .3s; }
+
+@keyframes petshop-assistant-bounce {
+  to { transform: translateY(-4px); opacity: .55; }
+}
+
+.petshop-assistant__products {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 216px;
+  gap: 9px;
+  margin: 4px -15px 13px;
+  padding: 0 15px 3px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.petshop-assistant__products::-webkit-scrollbar { display: none; }
+
+.petshop-assistant-product {
+  min-width: 0;
+  border: 1px solid #ebe8f2;
+  border-radius: 18px;
+  padding: 9px;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto;
+  column-gap: 10px;
+  scroll-snap-align: start;
+  background: #fff;
+  box-shadow: 0 7px 20px rgba(49, 39, 79, .06);
+}
+
+.petshop-assistant-product__image {
+  grid-row: 1 / 5;
+  width: 58px;
+  height: 72px;
+  border-radius: 13px;
+  display: block;
+  object-fit: contain;
+  background: #f4f2f8;
+}
+
+.petshop-assistant-product__title {
+  min-width: 0;
+  height: 34px;
+  overflow: hidden;
+  display: -webkit-box;
+  color: #302b39;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.35;
+  text-decoration: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.petshop-assistant-product__meta {
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #908a9c;
+  font-size: 10px;
+}
+
+.petshop-assistant-product__meta b {
+  color: #ff7a36;
+}
+
+.petshop-assistant-product__hint {
+  height: 24px;
+  margin-top: 3px;
+  overflow: hidden;
+  display: -webkit-box;
+  color: #746d80;
+  font-size: 9px;
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.petshop-assistant-product__bottom {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.petshop-assistant-product__price {
+  color: #241f2b;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.petshop-assistant-product__add {
+  min-width: 62px;
+  height: 26px;
+  border: 0;
+  border-radius: 9px;
+  padding: 0 9px;
+  color: #fff;
+  background: #ff6f32;
+  font: 750 10px/1 Inter, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.petshop-assistant-product__add.is-added {
+  color: #3b8b57;
+  background: #eaf8ee;
+}
+
+.petshop-assistant__quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 3px 0 13px;
+}
+
+.petshop-assistant__quick button {
+  min-height: 34px;
+  border: 1px solid #ddd6ff;
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: #6242cb;
+  background: #fff;
+  font: 700 11px/1.2 Inter, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.petshop-assistant__quick button:hover {
+  border-color: #7850ff;
+  background: #f3efff;
+}
+
+.petshop-assistant__composer {
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  border-top: 1px solid #eeeaf4;
+  background: #fff;
+}
+
+.petshop-assistant__form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  gap: 8px;
+  align-items: center;
+}
+
+.petshop-assistant__form input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #ddd9e6;
+  border-radius: 14px;
+  padding: 0 13px;
+  color: #282331;
+  background: #f9f8fb;
+  font: 500 14px/1 Inter, Arial, sans-serif;
+}
+
+.petshop-assistant__form input::placeholder { color: #9a94a5; }
+
+.petshop-assistant__send {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #7850ff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.petshop-assistant__privacy {
+  margin: 7px 3px 0;
+  color: #9c96a6;
+  font-size: 9px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .petshop-assistant-launcher {
+    right: 14px;
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    min-width: 58px;
+    width: 58px;
+    height: 58px;
+    border-radius: 19px;
+    padding: 9px;
+  }
+
+  .petshop-assistant-launcher__label { display: none; }
+  .petshop-assistant-launcher__pulse { left: 43px; top: 7px; }
+
+  .petshop-assistant {
+    right: 8px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    width: calc(100vw - 16px);
+    height: min(650px, calc(100dvh - 88px - env(safe-area-inset-bottom)));
+    border-radius: 24px;
+  }
+
+  .cart-page .petshop-assistant-launcher {
+    bottom: calc(140px + env(safe-area-inset-bottom));
+  }
+
+  .cart-page .petshop-assistant {
+    bottom: calc(138px + env(safe-area-inset-bottom));
+    height: min(590px, calc(100dvh - 150px - env(safe-area-inset-bottom)));
+  }
+
+  .petshop-assistant__header { min-height: 68px; padding: 11px 11px 10px 13px; }
+  .petshop-assistant__avatar { width: 40px; height: 40px; flex-basis: 40px; }
+  .petshop-assistant__messages { padding: 15px 12px 7px; }
+  .petshop-assistant__products { margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petshop-assistant,
+  .petshop-assistant-launcher,
+  .petshop-assistant__messages { transition: none; scroll-behavior: auto; }
+  .petshop-assistant__typing i { animation: none; }
+}

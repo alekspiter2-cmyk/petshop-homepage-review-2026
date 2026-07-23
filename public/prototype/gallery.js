@@ -120,6 +120,9 @@
     modal.querySelector('[data-pg-price]').textContent = formatPrice(product.price);
     modal.querySelector('[data-pg-old-price]').textContent = formatPrice(product.oldPrice);
     modal.querySelector('[data-pg-variants]').hidden = product.galleryKey !== 'royal';
+    const addButton = modal.querySelector('[data-pg-add]');
+    addButton.textContent = 'В корзину';
+    addButton.classList.remove('is-added');
 
     const multiple = images.length > 1;
     modal.classList.toggle('pg-modal--single', !multiple);

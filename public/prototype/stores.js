@@ -17,6 +17,7 @@ const resultSummary = document.querySelector('[data-result-summary]');
 const emptyState = document.querySelector('[data-store-empty]');
 let activeFilter = 'all';
 let selectedStoreId = 1;
+let mapZoom = 1;
 
 function routeUrl(store) {
   return `https://yandex.ru/maps/?text=${encodeURIComponent(`Санкт-Петербург, ${store.address}`)}`;
@@ -27,7 +28,7 @@ function storeType(store) {
 }
 
 function storeCard(store) {
-  return `<article class="store-card${store.id === selectedStoreId ? ' is-selected' : ''}" data-store-id="${store.id}" tabindex="0">
+  return `<article class="store-card${store.id === selectedStoreId ? ' is-selected' : ''}" data-store-id="${store.id}">
     <div class="store-card__top"><span class="store-card__type${store.vet ? ' store-card__type--vet' : ''}">${storeType(store)}</span><span class="store-card__status">Открыто до ${store.close}</span></div>
     <h3>${store.address}</h3>
     <div class="store-card__metro"><span class="metro-icon">М</span>${store.metro}</div>
@@ -54,7 +55,16 @@ function renderStores() {
   const visible = filteredStores();
   if (!visible.some((store) => store.id === selectedStoreId) && visible[0]) selectedStoreId = visible[0].id;
   if (storeList) storeList.innerHTML = visible.map(storeCard).join('');
-  if (mapMarkers) mapMarkers.innerHTML = visible.map((store) => `<button class="map-marker${store.id === selectedStoreId ? ' is-selected' : ''}" type="button" style="left:${store.x}%;top:${store.y}%" aria-label="${store.address}" data-map-store="${store.id}"><span>${store.vet ? '+' : 'P'}</span></button>`).join('');
+  if (mapMarkers) mapMarkers.innerHTML = visible.map((store) => {
+    const x = Math.min(95, Math.max(5, 50 + (store.x - 50) * mapZoom));
+    const y = Math.min(95, Math.max(5, 50 + (store.y - 50) * mapZoom));
+    return `<button class="map-marker${store.id === selectedStoreId ? ' is-selected' : ''}" type="button" style="left:${x}%;top:${y}%" aria-label="${store.address}" data-map-store="${store.id}"><span>${store.vet ? '+' : 'P'}</span></button>`;
+  }).join('');
+  const mapCanvas = document.querySelector('[data-map-canvas]');
+  if (mapCanvas) mapCanvas.style.backgroundSize = `${Math.round(38 * mapZoom)}px ${Math.round(38 * mapZoom)}px`;
+  document.querySelectorAll('[data-map-zoom]').forEach((button) => {
+    button.disabled = (button.dataset.mapZoom === 'in' && mapZoom >= 1.5) || (button.dataset.mapZoom === 'out' && mapZoom <= .75);
+  });
   const selected = storePoints.find((store) => store.id === selectedStoreId) || visible[0];
   if (mapCard) mapCard.innerHTML = selected ? mapSummary(selected) : '<h3>Магазины не найдены</h3><p>Измените параметры поиска.</p>';
   if (resultSummary) resultSummary.textContent = `${visible.length} ${visible.length === 1 ? 'магазин' : visible.length < 5 ? 'магазина' : 'магазинов'} в Санкт-Петербурге`;
@@ -66,6 +76,12 @@ function selectStore(id, openMap = false) {
   selectedStoreId = id;
   if (openMap) setView('map');
   renderStores();
+}
+
+function setMapZoom(direction) {
+  mapZoom = Math.min(1.5, Math.max(.75, mapZoom + (direction === 'in' ? .25 : -.25)));
+  renderStores();
+  if (typeof showToast === 'function') showToast(`Масштаб карты: ${Math.round(mapZoom * 100)}%`);
 }
 
 function setView(view) {
@@ -114,6 +130,8 @@ document.addEventListener('click', (event) => {
   }
   const marker = event.target.closest('[data-map-store]');
   if (marker) return selectStore(Number(marker.dataset.mapStore));
+  const zoomButton = event.target.closest('[data-map-zoom]');
+  if (zoomButton) return setMapZoom(zoomButton.dataset.mapZoom);
   const details = event.target.closest('[data-store-details]');
   if (details) return openStoreModal(storePoints.find((store) => store.id === Number(details.dataset.storeDetails)));
   const card = event.target.closest('[data-store-id]');
@@ -148,7 +166,9 @@ document.querySelector('[data-city-list]')?.addEventListener('click', (event) =>
   setCityPopover(false);
   if (typeof showToast === 'function') showToast('Город выбран');
 });
-document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeStoreModal(); setCityPopover(false); } });
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') { closeStoreModal(); setCityPopover(false); }
+});
 
 renderStores();
 if (window.location.hash === '#map') setView('map');
