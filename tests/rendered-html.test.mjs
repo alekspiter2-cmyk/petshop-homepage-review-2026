@@ -36,9 +36,10 @@ test("server-renders the Petshop prototype entry page", async () => {
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 });
 
-test("keeps cart recommendations and version metadata in the published prototype", async () => {
-  const [cart, version, versions] = await Promise.all([
+test("keeps cart recommendations, pet sections and version metadata in the published prototype", async () => {
+  const [cart, catalog, version, versions] = await Promise.all([
     readFile(new URL("../public/prototype/cart.html", import.meta.url), "utf8"),
+    readFile(new URL("../public/prototype/catalog.js", import.meta.url), "utf8"),
     readFile(new URL("../public/prototype/version.json", import.meta.url), "utf8"),
     readFile(new URL("../VERSIONS.md", import.meta.url), "utf8"),
   ]);
@@ -48,8 +49,11 @@ test("keeps cart recommendations and version metadata in the published prototype
   assert.match(cart, /data-context-tab="food"/);
   assert.match(cart, /data-context-tab="litter"/);
   assert.match(cart, /data-context-tab="toys"/);
+  assert.match(catalog, /catalog\.html\?page=other-pets/);
+  assert.match(catalog, /catalog\.html\?page=fish/);
+  assert.match(catalog, /catalog\.html\?page=birds/);
 
   const release = JSON.parse(version);
-  assert.equal(release.version, "2026.07.23.2");
-  assert.match(versions, /2026\.07\.23\.2/);
+  assert.equal(release.version, "2026.07.23.3");
+  assert.match(versions, /2026\.07\.23\.3/);
 });

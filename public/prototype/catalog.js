@@ -41,6 +41,48 @@ const catalogData = {
       { title: 'Для дрессировки', icon: '🏅', tone: 'peach', items: ['Корректировка поведения', 'Кликеры', 'Ринговки', 'Сумки для лакомств'] },
       { title: 'Подарочные сертификаты', icon: '🎁', tone: 'orange', items: ['Электронные сертификаты', 'Подарок владельцу питомца'] }
     ]
+  },
+  'other-pets': {
+    eyebrow: 'Каталог для питомца',
+    title: 'Всё для грызунов и хорьков',
+    description: 'Рационы, клетки, наполнители, игрушки и ежедневный уход.',
+    emoji: '🐹',
+    tone: 'cats',
+    popular: ['Корма', 'Клетки', 'Наполнители', 'Сено', 'Игрушки'],
+    groups: [
+      { title: 'Корма и лакомства', icon: '🥕', tone: 'peach', items: ['Для хомяков', 'Для морских свинок', 'Для кроликов', 'Для крыс и мышей', 'Для хорьков', 'Лакомства'] },
+      { title: 'Клетки и переноски', icon: '🏠', tone: 'lilac', items: ['Клетки', 'Переноски', 'Вольеры', 'Домики', 'Лесенки', 'Полки'] },
+      { title: 'Гигиена и уход', icon: '✨', tone: 'blue', items: ['Наполнители', 'Песок для купания', 'Уход за шерстью', 'Средства от запаха', 'Когтерезы', 'Туалеты'] },
+      { title: 'Игрушки и аксессуары', icon: '🎡', tone: 'rose', items: ['Колёса', 'Тоннели', 'Гамаки', 'Миски', 'Поилки', 'Шлейки'] }
+    ]
+  },
+  fish: {
+    eyebrow: 'Каталог для питомца',
+    title: 'Всё для рыб',
+    description: 'Корма, аквариумы, оборудование и уход за водой.',
+    emoji: '🐠',
+    tone: 'dogs',
+    popular: ['Корма', 'Аквариумы', 'Фильтры', 'Уход за водой', 'Декор'],
+    groups: [
+      { title: 'Корма', icon: '🥣', tone: 'yellow', items: ['Хлопья', 'Гранулы', 'Таблетки', 'Для мальков', 'Для донных рыб', 'Лакомства'] },
+      { title: 'Аквариумы', icon: '🐟', tone: 'sky', items: ['Аквариумы', 'Тумбы', 'Крышки', 'Отсадники', 'Террариумы', 'Комплектующие'] },
+      { title: 'Оборудование', icon: '⚙', tone: 'blue', items: ['Фильтры', 'Компрессоры', 'Нагреватели', 'Освещение', 'Термометры', 'Кормушки'] },
+      { title: 'Уход и оформление', icon: '🌿', tone: 'green', items: ['Уход за водой', 'Грунты', 'Растения', 'Декорации', 'Сачки', 'Сифоны'] }
+    ]
+  },
+  birds: {
+    eyebrow: 'Каталог для питомца',
+    title: 'Всё для птиц',
+    description: 'Корма, клетки, игрушки, витамины и забота каждый день.',
+    emoji: '🦜',
+    tone: 'cats',
+    popular: ['Корма', 'Клетки', 'Лакомства', 'Игрушки', 'Витамины'],
+    groups: [
+      { title: 'Корма и лакомства', icon: '🌾', tone: 'yellow', items: ['Для волнистых попугаев', 'Для средних попугаев', 'Для крупных попугаев', 'Для канареек', 'Лакомства', 'Минеральные смеси'] },
+      { title: 'Клетки и переноски', icon: '🏠', tone: 'green', items: ['Клетки', 'Переноски', 'Вольеры', 'Жёрдочки', 'Поддоны', 'Комплектующие'] },
+      { title: 'Игрушки и аксессуары', icon: '🪶', tone: 'rose', items: ['Качели', 'Лесенки', 'Зеркала', 'Колокольчики', 'Купалки', 'Кормушки'] },
+      { title: 'Здоровье и уход', icon: '✚', tone: 'mint', items: ['Витамины', 'Уход за клювом', 'Уход за оперением', 'Песок', 'Средства от паразитов', 'Гигиена клетки'] }
+    ]
   }
 };
 
@@ -48,9 +90,9 @@ const catalogEntries = [
   { title: 'Кошки', description: 'Еда, наполнители, уход и игрушки', emoji: '🐈', tone: 'peach', href: 'catalog.html?page=cats', label: 'Открыть раздел' },
   { title: 'Собаки', description: 'Корм, лакомства, прогулки и груминг', emoji: '🐕', tone: 'blue', href: 'catalog.html?page=dogs', label: 'Открыть раздел' },
   { title: 'Котята и щенки', description: 'Всё для здорового старта и роста', emoji: '🐾', tone: 'yellow', id: 'young' },
-  { title: 'Грызуны и хорьки', description: 'Корма, клетки, наполнители и уход', emoji: '🐹', tone: 'lilac', id: 'other-pets' },
-  { title: 'Рыбки', description: 'Аквариумы, корма и оборудование', emoji: '🐠', tone: 'sky', id: 'fish' },
-  { title: 'Птицы', description: 'Корма, клетки, игрушки и витамины', emoji: '🦜', tone: 'green', id: 'birds' },
+  { title: 'Грызуны и хорьки', description: 'Корма, клетки, наполнители и уход', emoji: '🐹', tone: 'lilac', id: 'other-pets', href: 'catalog.html?page=other-pets' },
+  { title: 'Рыбки', description: 'Аквариумы, корма и оборудование', emoji: '🐠', tone: 'sky', id: 'fish', href: 'catalog.html?page=fish' },
+  { title: 'Птицы', description: 'Корма, клетки, игрушки и витамины', emoji: '🦜', tone: 'green', id: 'birds', href: 'catalog.html?page=birds' },
   { title: 'Ветаптека', description: 'Здоровье, профилактика и восстановление', emoji: '✚', tone: 'mint', id: 'vet' },
   { title: 'Акции', description: 'Лучшие цены и выгодные наборы', emoji: '%', tone: 'orange' },
   { title: 'Умные товары', description: 'Автокормушки, поилки и GPS-трекеры', emoji: '⚡', tone: 'purple' },
@@ -67,6 +109,9 @@ function pageTabs(active) {
       <a class="${active === 'catalog' ? 'is-active' : ''}" href="catalog.html">Весь каталог</a>
       <a class="${active === 'cats' ? 'is-active' : ''}" href="catalog.html?page=cats">Кошки</a>
       <a class="${active === 'dogs' ? 'is-active' : ''}" href="catalog.html?page=dogs">Собаки</a>
+      <a class="${active === 'other-pets' ? 'is-active' : ''}" href="catalog.html?page=other-pets">Грызуны</a>
+      <a class="${active === 'fish' ? 'is-active' : ''}" href="catalog.html?page=fish">Рыбки</a>
+      <a class="${active === 'birds' ? 'is-active' : ''}" href="catalog.html?page=birds">Птицы</a>
     </nav>
   `;
 }
@@ -125,6 +170,13 @@ function groupCard(group) {
 
 function renderPetPage(pageKey) {
   const page = catalogData[pageKey];
+  const petNames = {
+    cats: 'кошек',
+    dogs: 'собак',
+    'other-pets': 'грызунов и хорьков',
+    fish: 'рыб',
+    birds: 'птиц'
+  };
   document.title = `${page.title} — Petshop`;
   return `
     <section class="shell catalog-intro catalog-intro--${page.tone}">
@@ -142,7 +194,7 @@ function renderPetPage(pageKey) {
         <b>Популярное</b>
         <div>${page.popular.map((item) => `<a href="#" data-toast="Открываем «${item}»">${item}</a>`).join('')}</div>
       </div>
-      <div class="catalog-heading"><div><h2>Выберите раздел</h2><p>Все категории для ${pageKey === 'cats' ? 'кошек' : 'собак'}</p></div><span>${page.groups.length} разделов</span></div>
+      <div class="catalog-heading"><div><h2>Выберите раздел</h2><p>Все категории для ${petNames[pageKey]}</p></div><span>${page.groups.length} разделов</span></div>
       <div class="category-group-grid">${page.groups.map(groupCard).join('')}</div>
     </section>
   `;
