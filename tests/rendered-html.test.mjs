@@ -50,6 +50,6 @@ test("keeps cart recommendations and version metadata in the published prototype
   assert.match(cart, /data-context-tab="toys"/);
 
   const release = JSON.parse(version);
-  assert.equal(release.version, "2026.07.23.1");
-  assert.match(versions, /2026\.07\.23\.1/);
+  assert.equal(release.version, "2026.07.23.2");
+  assert.match(versions, /2026\.07\.23\.2/);
 });
